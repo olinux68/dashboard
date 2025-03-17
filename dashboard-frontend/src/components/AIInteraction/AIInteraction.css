@@ -1,129 +1,129 @@
 .ai-container {
-    display: flex;
-    flex-direction: column;
-    background-color: #1f2937;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    color: white;
+  display: flex;
+  flex-direction: column;
+  background-color: #1f2937;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
 /* Titre */
 h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #3b82f6;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3b82f6;
+  margin-bottom: 10px;
 }
 
 /* Sélecteur de modèle */
 .ai-select {
-    margin-bottom: 10px;
-    padding: 8px;
-    border-radius: 6px;
-    border: none;
-    background-color: #374151;
-    color: white;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: #374151;
+  color: white;
 }
 
 /* Zone de conversation */
 .conversation-container {
-    max-height: 300px;
-    overflow-y: auto;
-    border: 1px solid #3b82f6;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: #111827;
-    margin-bottom: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #3b82f6;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #111827;
+  margin-bottom: 10px;
 }
 
 /* Style des messages */
 .message {
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    line-height: 1.4;
-    display: flex;
-    align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
 }
 
 /* Messages utilisateur */
 .message.user {
-    background-color: #3b82f6;
-    color: white;
-    text-align: right;
-    justify-content: flex-end;
-    border-left: 4px solid #1e40af;
+  background-color: #3b82f6;
+  color: white;
+  text-align: right;
+  justify-content: flex-end;
+  border-left: 4px solid #1e40af;
 }
 
 /* Messages IA */
 .message.ia {
-    background-color: #374151;
-    color: #e5e7eb;
-    text-align: left;
-    justify-content: flex-start;
-    border-left: 4px solid #9ca3af;
+  background-color: #374151;
+  color: #e5e7eb;
+  text-align: left;
+  justify-content: flex-start;
+  border-left: 4px solid #9ca3af;
 }
 
 /* Texte du message */
 .message-text {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 /* Nom de l'expéditeur */
 .message-sender {
-    font-weight: bold;
-    margin-right: 8px;
+  font-weight: bold;
+  margin-right: 8px;
 }
 
 /* Effet de chargement */
 .message.ia.loading {
-    font-style: italic;
-    color: #bbb;
+  font-style: italic;
+  color: #bbb;
 }
 
 /* Champ de saisie */
 .input-container {
-    display: flex;
-    align-items: center;
-    border: 1px solid #3b82f6;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #1f2937;
+  display: flex;
+  align-items: center;
+  border: 1px solid #3b82f6;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #1f2937;
 }
 
 /* Champ de texte */
 .ai-input {
-    flex-grow: 1;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #111827;
-    color: white;
-    resize: none;
-    height: 100px;
-    font-size: 16px;
-    outline: none;
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #111827;
+  color: white;
+  resize: none;
+  height: 100px;
+  font-size: 16px;
+  outline: none;
 }
 
 /* Placeholder */
 .ai-input::placeholder {
-    color: #9ca3af;
-    font-style: italic;
+  color: #9ca3af;
+  font-style: italic;
 }
 
 /* Bouton d'envoi */
 .ai-send {
-    margin-left: 10px;
-    padding: 10px 15px;
-    background-color: #3b82f6;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    font-weight: bold;
+  margin-left: 10px;
+  padding: 10px 15px;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
 }
 
 .ai-send:hover {
-    background-color: #2563eb;
+  background-color: #2563eb;
 }

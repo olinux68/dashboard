@@ -1,13 +1,75 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #1f2937;
+  color: white;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Ajout de styles globaux */
+h1, h2, h3, h4, h5, h6 {
+  color: #60a5fa;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin: 0.5rem 0;
+}
+
+a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #2563eb;
+  transform: scale(1.05);
+}
+
+/* Ajout de classes utilitaires */
+.text-center {
+  text-align: center;
+}
+
+.bg-gray-800 {
+  background-color: #1f2937;
+}
+
+.bg-blue-600 {
+  background-color: #3b82f6;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-gray-400 {
+  color: #d1d5db;
+}
+
+.shadow {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rounded {
+  border-radius: 5px;
 }

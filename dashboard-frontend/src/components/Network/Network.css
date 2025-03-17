@@ -1,47 +1,47 @@
 .network-container {
-    padding: 1rem;
-    color: white;
+  padding: 1rem;
+  color: white;
 }
 
 .network-search {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #1f2937;
-    color: white;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1f2937;
+  color: white;
 }
 
 .network-table {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #3b82f6;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #3b82f6;
 }
 
 th {
-    background-color: #1f2937;
-    color: #60a5fa;
+  background-color: #1f2937;
+  color: #60a5fa;
 }
 
 tr.even {
-    background-color: #2d3748;
+  background-color: #2d3748;
 }
 
 tr.odd {
-    background-color: #1f2937;
+  background-color: #1f2937;
 }
 
 tr:hover {
-    background-color: #3b82f6;
-    color: white;
+  background-color: #3b82f6;
+  color: white;
 }

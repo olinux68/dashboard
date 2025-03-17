@@ -23,8 +23,10 @@ const App = () => {
     const [conversation, setConversation] = useState([]);
     const [selectedModel, setSelectedModel] = useState("codellama");
     const [isLoading, setIsLoading] = useState(false);
-    
+
     useEffect(() => {
+        console.log("🟢 Chargement des données API...");
+        
         axios.get("http://localhost:7500/api/user")
             .then((res) => setUser(res.data.user))
             .catch((err) => console.error("❌ Erreur API User:", err));
@@ -32,7 +34,7 @@ const App = () => {
         axios.get("http://localhost:7500/api/system")
             .then((res) => setSystem(res.data))
             .catch((err) => console.error("❌ Erreur API System:", err));
-        
+
         axios.get("http://localhost:7500/api/disk")
             .then((res) => setDisk(res.data))
             .catch((err) => console.error("❌ Erreur API Disk:", err));
@@ -46,7 +48,10 @@ const App = () => {
             .catch((err) => console.error("❌ Erreur API Ports:", err));
 
         axios.get("http://localhost:11434/api/tags")
-            .then((res) => setModels(res.data.models))
+            .then((res) => {
+                setModels(res.data.models);
+                console.log("🟢 Modèles IA récupérés:", res.data.models);
+            })
             .catch((err) => console.error("❌ Erreur API Models:", err));
     }, []);
 
@@ -56,11 +61,13 @@ const App = () => {
         setIsLoading(true);
 
         try {
+            console.log("📡 Envoi d'un message à l'IA:", message);
             const res = await axios.post("http://localhost:11434/api/generate", {
                 model: selectedModel,
                 prompt: message,
                 stream: false
             });
+            console.log("🟢 Réponse reçue de l'IA:", res.data.response);
 
             setConversation([...newConversation, { sender: "ia", text: res.data.response }]);
         } catch (error) {
@@ -71,18 +78,28 @@ const App = () => {
         }
     };
 
+    console.log("🟢 modalContent:", modalContent);
+    console.log("🟢 Models disponibles:", models);
+
     return (
         <div className="bg-gray-900 text-white min-h-screen">
             <Navbar openModal={setModalContent} user={user} />
             <Hero user={user} />
             {modalContent && (
-                <Modal 
-                    title={modalContent === "ai" ? `IA - Modèle : ${selectedModel}` : modalContent} 
+                <Modal
+                    title={modalContent === "ai" ? `IA - Modèle : ${selectedModel}` : modalContent}
                     content={
                         modalContent === "system" ? (system ? <SystemInfo system={system} disk={disk} /> : <p>⏳ Chargement des informations système...</p>) :
                         modalContent === "processes" ? (processes ? <Processes processes={processes} /> : <p>⏳ Chargement des processus...</p>) :
                         modalContent === "network" ? (ports ? <Network ports={ports} /> : <p>⏳ Chargement des informations réseau...</p>) :
-                        modalContent === "ai" ? (models ? <AIInteraction models={models} sendMessage={sendMessage} conversation={conversation} setSelectedModel={setSelectedModel} selectedModel={selectedModel} inputHeight="100px" isLoading={isLoading} /> : <p>⏳ Chargement des modèles IA...</p>) : null
+                        modalContent === "ai" ? (models ? <AIInteraction 
+                            models={models} 
+                            sendMessage={sendMessage} 
+                            conversation={conversation} 
+                            setSelectedModel={setSelectedModel} 
+                            selectedModel={selectedModel} 
+                            isLoading={isLoading} 
+                        /> : <p>⏳ Chargement des modèles IA...</p>) : null
                     }
                     closeModal={() => setModalContent(null)}
                     animated={true}

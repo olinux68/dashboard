@@ -27,6 +27,7 @@ const AIInteraction = ({ models, sendMessage, conversation, setSelectedModel, se
                 ))}
             </select>
 
+            <h3 className="text-lg font-semibold mt-4">💬 Dialogue</h3>
             <div className="conversation-container">
                 {conversation.map((msg, index) => (
                     <div key={index} className={`message ${msg.sender === "user" ? "user" : "ia"}`}>
