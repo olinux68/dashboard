@@ -45,22 +45,24 @@ const App = () => {
             .then((res) => setPorts(res.data.ports))
             .catch((err) => console.error("❌ Erreur API Ports:", err));
 
-        axios.get("http://localhost:7500/api/ollama/models")
+        axios.get("http://localhost:11434/api/tags")
             .then((res) => setModels(res.data.models))
             .catch((err) => console.error("❌ Erreur API Models:", err));
     }, []);
 
     const sendMessage = async (message) => {
         const newConversation = [...conversation, { sender: "user", text: message }];
-        setConversation([...newConversation]); // Ne pas afficher "L'IA réfléchit..." immédiatement
+        setConversation([...newConversation]);
         setIsLoading(true);
 
         try {
-            const res = await axios.post("http://localhost:7500/api/ollama/run", {
+            const res = await axios.post("http://localhost:11434/api/generate", {
                 model: selectedModel,
                 prompt: message,
+                stream: false
             });
-            setConversation([...newConversation, { sender: "ia", text: res.data.response }]); // Remplace "L'IA réfléchit..." par la réponse réelle
+
+            setConversation([...newConversation, { sender: "ia", text: res.data.response }]);
         } catch (error) {
             console.error("❌ Erreur API IA:", error);
             setConversation([...newConversation, { sender: "ia", text: "⚠️ Erreur de réponse de l'IA" }]);

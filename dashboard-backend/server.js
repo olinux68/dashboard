@@ -87,40 +87,35 @@ app.get('/api/ollama/models', (req, res) => {
 });
 
 // Route pour exécuter une requête IA avec Ollama
-app.post('/api/ollama/run', (req, res) => {
+app.post('/api/ollama/run', async (req, res) => {
     const { model, prompt } = req.body;
-    if (!model || !prompt) return res.status(400).json({ error: 'Modèle et prompt requis' });
+    if (!model || !prompt) {
+        return res.status(400).json({ error: 'Modèle et prompt requis' });
+    }
 
-    console.log("🟡 Exécution d'Ollama avec le modèle:", model, "et le prompt:", prompt);
+    console.log("🟡 Envoi de la requête à Ollama avec le modèle:", model, "et le prompt:", prompt);
 
-    const command = `ollama run ${model}`;
-    
-    const child = exec(command, { shell: '/bin/bash' });
+    try {
+        const response = await fetch('http://localhost:11434/api/generate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ model, prompt, stream: false })
+        });
 
-    let output = "";
+        if (!response.ok) {
+            throw new Error(`Erreur Ollama: ${response.statusText}`);
+        }
 
-    // Écrire le prompt dans l'entrée standard du processus
-    child.stdin.write(prompt + "\n");
-    child.stdin.end();
+        const data = await response.json();
+        console.log("✅ Réponse de Ollama :", data);
 
-    child.stdout.on("data", (data) => {
-        console.log("✅ Réponse partielle de Ollama :", data.toString());
-        output += data.toString();
-    });
-
-    child.stderr.on("data", (data) => {
-        console.error("❌ Erreur Ollama :", data.toString());
-    });
-
-    child.on("close", (code) => {
-        console.log("🔄 Processus terminé avec code :", code);
-        res.json({ response: output.trim() });
-    });
-
-    child.on("error", (err) => {
-        console.error("⚠️ Erreur lors du lancement d'Ollama :", err);
-        res.status(500).json({ error: err.message });
-    });
+        res.json({ response: data.response });
+    } catch (error) {
+        console.error("❌ Erreur lors de l'appel à Ollama :", error);
+        res.status(500).json({ error: error.message });
+    }
 });
 
 // Démarrer le serveur
