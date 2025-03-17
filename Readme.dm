@@ -50,6 +50,7 @@ dashboard-wsl2/
 ## 🚀 **Installation et Exécution**
 ### 🛠️ **1. Prérequis**
 - **WSL2 sous Debian**
+- **ollama curl -fsSL https://ollama.com/install.sh | sh
 - **Node.js** (version 22+)
 - **npm** ou **yarn**
 - **Git** installé
